@@ -16,10 +16,10 @@
     <body>
         <h1>Simple Note Keeper</h1>
         <h2>View Note</h2>
-        <div><b>Title:</b> This is the title</div>
+        <div><b>Title:</b> ${title}</div>
         <br>
         <div><b>Content:</b></div>
-        <div>Contents go here</div>
+        <div>${content}</div>
         <br>
         
         <a href="note?edit" name="edit">Edit</a>
