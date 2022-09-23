@@ -16,15 +16,11 @@
     <body>
         <h1>Simple Note Keeper</h1>
         <h2>View Note</h2>
-        <form method="post" action="note">
-            
         <div><b>Title:</b> This is the title</div>
         <br>
         <div><b>Content:</b></div>
         <div>Contents go here</div>
         <br>
-            
-        </form>
         
         <a href="note?edit" name="edit">Edit</a>
     </body>
