@@ -18,15 +18,9 @@
         <h2>Edit Note</h2>
         <form method="post" action="note"> 
 
-<!--            Title: <input type="text" name="titleText" value="${title}">
+            Title: <input type="text" name="titleText" value="${note.title}">
             <br>
-            Content: <textarea name="contentText" rows="6" cols="25">${content}</textarea>
-            <br>
-            <input type="submit" name="saveNote" value="Save">-->
-            
-            Title: <input type="text" name="titleText" value="${noteFromFile.title}">
-            <br>
-            Content: <textarea name="contentText" rows="6" cols="25">${noteFromFile.content}</textarea>
+            Content: <textarea name="contentText" rows="6" cols="25">${note.content}</textarea>
             <br>
             <input type="submit" name="saveNote" value="Save">
 

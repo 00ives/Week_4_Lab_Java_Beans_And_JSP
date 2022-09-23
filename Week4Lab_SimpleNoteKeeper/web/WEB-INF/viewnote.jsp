@@ -18,22 +18,14 @@
         <h2>View Note</h2>
         <div>
             <b>Title:</b>
-            <c:if test="${firstLoad = true}">
-                ${noteFromFile.title}
-            </c:if>  
-            <c:if test="${viewNote = true}">
-                ${noteSaved.title}
-            </c:if>
+
+            ${note.title}
+
             <br><br>
 
-
             <div><b>Content:</b></div>
-            <c:if test="${firstLoad = true}">
-                <div>${noteFromFile.content}</div>
-            </c:if>  
-            <c:if test="${viewNote = true}">
-                <div>${noteSaved.content}</div>
-            </c:if>
+
+            <div>${note.content}</div>
 
         </div>
         <br>
