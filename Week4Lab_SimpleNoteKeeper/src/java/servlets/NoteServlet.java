@@ -38,7 +38,7 @@ public class NoteServlet extends HttpServlet {
             throws ServletException, IOException {
         
         getServletContext()
-                .getRequestDispatcher("/WEB-INF/editnote.jsp")
+                .getRequestDispatcher("/WEB-INF/viewnote.jsp")
                 .forward(request, response);
     }
 
