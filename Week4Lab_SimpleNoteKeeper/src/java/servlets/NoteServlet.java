@@ -1,8 +1,11 @@
 package servlets;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -63,6 +66,13 @@ public class NoteServlet extends HttpServlet {
         
         request.setAttribute("viewNote", viewNote);
         request.setAttribute("noteSaved", noteSaved);
+        
+        String path = getServletContext().getRealPath("/WEB-INF/note.txt");
+        PrintWriter output = new PrintWriter(new BufferedWriter(new FileWriter(path, false)));
+        
+        output.println(noteSaved.getTitle());
+        output.println(noteSaved.getContent());
+        output.close();
         
         getServletContext()
                 .getRequestDispatcher("/WEB-INF/viewnote.jsp")
