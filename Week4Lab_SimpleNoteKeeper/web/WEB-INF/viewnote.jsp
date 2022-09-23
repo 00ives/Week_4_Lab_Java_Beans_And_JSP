@@ -16,12 +16,28 @@
     <body>
         <h1>Simple Note Keeper</h1>
         <h2>View Note</h2>
-        <div><b>Title:</b> ${title}</div>
+        <div>
+            <b>Title:</b>
+            <c:if test="${firstLoad = true}">
+                ${noteFromFile.title}
+            </c:if>  
+            <c:if test="${viewNote = true}">
+                ${noteSaved.title}
+            </c:if>
+            <br><br>
+
+
+            <div><b>Content:</b></div>
+            <c:if test="${firstLoad = true}">
+                <div>${noteFromFile.content}</div>
+            </c:if>  
+            <c:if test="${viewNote = true}">
+                <div>${noteSaved.content}</div>
+            </c:if>
+
+        </div>
         <br>
-        <div><b>Content:</b></div>
-        <div>${content}</div>
-        <br>
-        
+
         <a href="note?edit" name="edit">Edit</a>
     </body>
 </html>

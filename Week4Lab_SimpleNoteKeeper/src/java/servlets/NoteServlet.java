@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Note;
 
 /**
  *
@@ -18,9 +19,20 @@ public class NoteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String editNoteLink = request.getParameter("edit");
-//        System.out.println("the edit link is " + editNoteLink);
-//        System.out.println( editNoteLink);
+  
+            String path = getServletContext().getRealPath("/WEB-INF/note.txt");
+            BufferedReader input = new BufferedReader(new FileReader(path));
+            
+            String title = input.readLine();
+            String content = input.readLine();
+            
+            Note noteFromFile = new Note(title,content);
 
+            request.setAttribute("noteFromFile", noteFromFile);
+            
+//            request.setAttribute("title", title);
+//            request.setAttribute("content", content);
+            
         if (editNoteLink != null) {
 
             getServletContext()
@@ -28,19 +40,13 @@ public class NoteServlet extends HttpServlet {
                     .forward(request, response);
 
         } else {
-            String path = getServletContext().getRealPath("/WEB-INF/note.txt");
-            BufferedReader input = new BufferedReader(new FileReader(path));
-
-            String title = input.readLine();
-            String content = input.readLine();
-
-            request.setAttribute("title", title);
-            request.setAttribute("content", content);
-
+            
+            boolean firstLoad = true;
+            request.setAttribute("firstLoad", firstLoad);
             getServletContext()
                     .getRequestDispatcher("/WEB-INF/viewnote.jsp")
                     .forward(request, response);
-
+            firstLoad = false;
         }
     }
 
@@ -48,12 +54,21 @@ public class NoteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        
         String contentText = request.getParameter("contentText");
-        String titleTezt = request.getParameter("titleText");
-
+        String titleText = request.getParameter("titleText");
+        
+        Note noteSaved = new Note(titleText,contentText);
+        boolean viewNote = true;
+        
+        request.setAttribute("viewNote", viewNote);
+        request.setAttribute("noteSaved", noteSaved);
+        
         getServletContext()
                 .getRequestDispatcher("/WEB-INF/viewnote.jsp")
                 .forward(request, response);
+        
+        viewNote = false;
     }
 
 }
